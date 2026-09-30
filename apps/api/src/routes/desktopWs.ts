@@ -1557,7 +1557,7 @@ function createDesktopWsHandlers(
 
 export type DesktopStreamStartSettlement =
   | { outcome: 'accepted' }
-  | { outcome: 'denied'; reason: string }
+  | { outcome: 'denied'; reason: string; detail?: string }
   | { outcome: 'failed'; error: string }
   | { outcome: 'refused' };
 
@@ -1663,7 +1663,7 @@ export function settleDesktopStreamStart(
   if (settlement.outcome === 'denied') {
     failDesktopStreamStart(sessionId, session, {
       code: 'CONSENT_DENIED',
-      message: consentDeniedMessage(settlement.reason),
+      message: consentDeniedMessage(settlement.reason, settlement.detail),
       closeReason: 'Consent denied',
     });
     return;
