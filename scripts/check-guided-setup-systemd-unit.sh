@@ -93,6 +93,39 @@ if ! grep -qxF "${expected_wd}" "${UNIT}"; then
   fail=1
 fi
 
+# --- 3. service_exists must not race SIGPIPE under pipefail (#7960) --------
+# The helper runs under `set -euo pipefail`. A `compose config --services |
+# grep -q` pipeline lets grep exit on the first match; compose then dies of
+# SIGPIPE writing the rest, pipefail fails the pipeline, and
+# `service_exists caddy` reports false. Caddy is then never recreated after a
+# reboot. Reproduce it deterministically: a stub `docker` prints caddy first,
+# pauses so grep has exited, then writes more services.
+STUB_BIN="${TMP_DIR}/stub-bin"
+mkdir -p "${STUB_BIN}"
+cat >"${STUB_BIN}/docker" <<'STUB'
+#!/usr/bin/env bash
+if [[ " $* " == *" config --services "* ]]; then
+  printf 'caddy\n'
+  sleep 0.3
+  for i in $(seq 1 2000); do printf 'service-%s\n' "${i}"; done
+  exit 0
+fi
+exit 0
+STUB
+chmod +x "${STUB_BIN}/docker"
+
+service_exists_fn="$(sed -n '/^service_exists() {$/,/^}$/p' "${HELPER}")"
+if [[ -z "${service_exists_fn}" ]]; then
+  echo "ERROR: could not locate service_exists() in the rendered boot helper" >&2
+  fail=1
+elif ! PATH="${STUB_BIN}:${PATH}" bash -c "set -euo pipefail
+compose=(docker compose)
+${service_exists_fn}
+service_exists caddy" >/dev/null 2>&1; then
+  echo "ERROR: rendered boot helper's service_exists() reports a present service as missing when compose output outlives grep (SIGPIPE under pipefail, #7960); caddy would not be recreated at boot." >&2
+  fail=1
+fi
+
 if command -v systemd-analyze >/dev/null 2>&1; then
   # --recursive-errors=no (systemd >= 250): a missing docker.service on the
   # verifying host is not a defect in OUR unit. Older systemd lacks the flag;

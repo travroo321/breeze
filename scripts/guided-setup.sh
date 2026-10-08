@@ -824,8 +824,12 @@ wait_for_docker() {
   return 1
 }
 
+# Capture first, then match: piping into grep -q lets grep exit on the first
+# match, compose dies of SIGPIPE, and pipefail turns a hit into a miss (#7960).
 service_exists() {
-  "\${compose[@]}" config --services | grep -qx "\$1"
+  local services
+  services="\$("\${compose[@]}" config --services)" || return 1
+  grep -qx -- "\$1" <<< "\${services}"
 }
 
 start_remaining_services() {
