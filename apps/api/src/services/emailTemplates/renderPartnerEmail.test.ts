@@ -22,7 +22,7 @@ describe('renderPartnerEmail', () => {
     const out = renderPartnerEmail(commentArgs());
     expect(out.subject).toBe('[T-2026-0001] New reply: Printer is down');
     expect(out.html).toContain('<!doctype html>');
-    expect(out.html).toContain('#155e75');
+    expect(out.html).toContain('#4DA3FF');
     expect(out.html).toContain('Your ticket has a new reply. Sign in to the portal to view it.');
     expect(out.html).toContain(`href="${PORTAL_HREF}"`);
   });

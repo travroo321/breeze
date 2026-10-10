@@ -32,7 +32,7 @@ import { and, eq } from 'drizzle-orm';
 import * as dbModule from '../db';
 import { organizations, partners, tickets, ticketComments, devices, ticketStatuses } from '../db/schema';
 import { getEmailService } from '../services/email';
-import { escapeHtml, renderButton, renderLayout, renderParagraph } from '../services/emailLayout';
+import { escapeHtml, REPLY_SLOT, renderButton, renderLayout, renderParagraph, renderReplyBlock } from '../services/emailLayout';
 import { renderPartnerEmail, type PartnerEmailCustom } from '../services/emailTemplates/renderPartnerEmail';
 import { resolveCommentNotificationPortalHref } from '../services/inboundEmail/commentNotificationPortalHref';
 import { buildThreadingHeaders, partnerInboundAddress, ticketThreadAnchor } from '../services/inboundEmail/outboundThreading';
@@ -578,6 +578,7 @@ async function collectRequesterEmail(
     const rows = await db
       .select({
         content: ticketComments.content,
+        authorName: ticketComments.authorName,
         isPublic: ticketComments.isPublic,
         deletedAt: ticketComments.deletedAt,
       })
@@ -603,7 +604,7 @@ async function collectRequesterEmail(
     // point comment TEXT would leave the platform. Defense in depth on isPublic:
     // the emitter's gate is the authority; this is a second check.
     if (!ticket.deletedAt && !comment.deletedAt && comment.isPublic && comment.content.trim()) {
-      html = appendFullReplyBody(html, comment.content);
+      html = appendFullReplyBody(html, comment.content, comment.authorName);
     }
   }
 
@@ -636,16 +637,15 @@ async function collectRequesterEmail(
  * quoted block below the rendered notification. Kept deliberately simple — the
  * comment `content` is plain text authored by a technician.
  */
-function appendFullReplyBody(html: string, body: string): string {
+function appendFullReplyBody(html: string, body: string, authorName?: string | null): string {
   const safe = escapeHtml(body).replace(/\r?\n/g, '<br>');
-  const block =
-    '<div style="margin-top:16px;padding:12px 16px;border-left:3px solid #d1d5db;'
-    + 'color:#374151;font-size:14px;line-height:1.5;white-space:normal;">'
-    + `${safe}</div>`;
+  const block = renderReplyBlock(safe, 'Our reply', authorName);
+  // The layout leaves a slot inside the card, under the template body, so the
+  // reply reads as part of the email rather than trailing after the footer.
+  if (html.includes(REPLY_SLOT)) return html.replace(REPLY_SLOT, block);
   // Splice the block INSIDE the rendered document, immediately before the closing
-  // </body>, so the reply text sits within the email body. Concatenating after
-  // </html> would place it outside the document, where some mail clients strip or
-  // hide trailing content. Fall back to a plain append only if no </body> exists.
+  // </body>, so the reply text sits within the email body. Fall back to a plain
+  // append only if no </body> exists.
   const idx = html.toLowerCase().lastIndexOf('</body>');
   if (idx === -1) return `${html}${block}`;
   return `${html.slice(0, idx)}${block}${html.slice(idx)}`;
