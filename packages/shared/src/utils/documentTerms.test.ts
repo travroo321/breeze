@@ -24,6 +24,23 @@ describe('parseTermsSections', () => {
     const long = '1. ' + 'word '.repeat(60);
     expect(parseTermsSections(long).sectionCount).toBe(0);
   });
+
+  it('treats short numbered clauses as body, not headings (no partial contents list)', () => {
+    const terms = [
+      'TERMS AND CONDITIONS',
+      '1. Services. Cloud Guardian provides the project work described in this quote.',
+      '2. Support time. For this project our rate is $125 per hour (credited from our $150 standard rate), billed in 15-minute increments.',
+      '7. No long contract. No minimum seat count, no three-year term, no charge to leave.',
+      '8. Payment. Invoices are due on the terms shown on each invoice.',
+    ].join('\n');
+    const r = parseTermsSections(terms);
+    expect(r.sectionCount).toBe(1);
+    expect(r.blocks.map((b) => b.kind)).toEqual(['heading', 'para', 'para', 'para', 'para']);
+  });
+
+  it('keeps a short label with a trailing period as a heading', () => {
+    expect(parseTermsSections('1. Limitation of Liability.\nCapped at fees paid.').sectionCount).toBe(1);
+  });
 });
 
 describe('textReadMinutes', () => {
