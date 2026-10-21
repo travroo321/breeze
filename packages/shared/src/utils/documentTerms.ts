@@ -6,10 +6,23 @@
  * Line-based section detection for free-text Terms & Conditions. No markdown
  * dependency: a line that starts with a number ("1.", "2.1", "3)") or an
  * ALL-CAPS label ("CONFIDENTIALITY:") is a heading; everything else is body.
+ * A numbered line that is a whole clause ("1. Services. We provide the work
+ * described in this quote.") is body too: only labels become headings.
  */
 const HEADING_RE = /^\s*(\d+(\.\d+)*[.)]?|[A-Z][A-Z &/-]{3,}:?)(\s|$)/;
 /** A numbered line longer than this is a sentence, not a heading. */
 const MAX_HEADING_CHARS = 100;
+/** A line ending like a sentence with more words than this is a clause, not a
+ *  heading. Without it, short clauses in numbered terms became headings while
+ *  their longer siblings stayed body, so the contents list (4+ sections)
+ *  repeated an arbitrary subset of the clauses above the full text. */
+const MAX_SENTENCE_HEADING_WORDS = 6;
+const SENTENCE_END_RE = /[.!?]["')\]]?$/;
+
+function isHeading(line: string): boolean {
+  if (line.length > MAX_HEADING_CHARS || !HEADING_RE.test(line)) return false;
+  return !(SENTENCE_END_RE.test(line) && line.split(/\s+/).length > MAX_SENTENCE_HEADING_WORDS);
+}
 
 export type TermsBlock =
   | { kind: 'heading'; text: string; id: string }
@@ -21,7 +34,7 @@ export function parseTermsSections(text: string): { blocks: TermsBlock[]; sectio
   for (const raw of text.split(/\r?\n/)) {
     const line = raw.trim();
     if (!line) continue;
-    if (line.length <= MAX_HEADING_CHARS && HEADING_RE.test(raw)) {
+    if (isHeading(line)) {
       sectionCount += 1;
       blocks.push({ kind: 'heading', text: line, id: `terms-section-${sectionCount}` });
     } else {
