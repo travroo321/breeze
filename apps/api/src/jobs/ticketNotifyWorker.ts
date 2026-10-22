@@ -637,12 +637,14 @@ async function collectRequesterEmail(
  * quoted block below the rendered notification. Kept deliberately simple — the
  * comment `content` is plain text authored by a technician.
  */
-function appendFullReplyBody(html: string, body: string, authorName?: string | null): string {
+export function appendFullReplyBody(html: string, body: string, authorName?: string | null): string {
   const safe = escapeHtml(body).replace(/\r?\n/g, '<br>');
   const block = renderReplyBlock(safe, 'Our reply', authorName);
   // The layout leaves a slot inside the card, under the template body, so the
   // reply reads as part of the email rather than trailing after the footer.
-  if (html.includes(REPLY_SLOT)) return html.replace(REPLY_SLOT, block);
+  // A function replacer: the reply is technician text, and a string replacement
+  // would expand $&, $` and $' in it into pieces of the email.
+  if (html.includes(REPLY_SLOT)) return html.replace(REPLY_SLOT, () => block);
   // Splice the block INSIDE the rendered document, immediately before the closing
   // </body>, so the reply text sits within the email body. Fall back to a plain
   // append only if no </body> exists.

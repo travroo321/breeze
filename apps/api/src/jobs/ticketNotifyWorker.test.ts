@@ -136,7 +136,8 @@ vi.mock('../services/expoPush', async (orig) => {
 });
 
 import { resolveCommentNotificationPortalHref } from '../services/inboundEmail/commentNotificationPortalHref';
-import { handleTicketEvent } from './ticketNotifyWorker';
+import { appendFullReplyBody, handleTicketEvent } from './ticketNotifyWorker';
+import { REPLY_SLOT, renderLayout } from '../services/emailLayout';
 
 describe('handleTicketEvent', () => {
   beforeEach(() => {
@@ -1400,5 +1401,17 @@ describe('ticket-assignment Pushover to the assignee\'s own key', () => {
     await handleTicketEvent(event as never);
 
     expect(pushoverMock.send).not.toHaveBeenCalled();
+  });
+});
+
+describe('appendFullReplyBody', () => {
+  it('puts the reply in the card slot literally: $&, $` and $\' in a reply are text, not replacement patterns', () => {
+    const html = renderLayout({ title: 't', preheader: 'p', body: '<p>Template body</p>' });
+    const out = appendFullReplyBody(html, "Quote: $& then $` then $' then $$\nline two", 'Pat Tech');
+    expect(out).toContain("Quote: $&amp; then $` then $&#39; then $$<br>line two");
+    expect(out.split('<!doctype html>').length - 1).toBe(1);
+    expect(out).not.toContain(REPLY_SLOT);
+    expect(out.indexOf('Template body')).toBeLessThan(out.indexOf('Quote:'));
+    expect(out.indexOf('Quote:')).toBeLessThan(out.indexOf('</body>'));
   });
 });

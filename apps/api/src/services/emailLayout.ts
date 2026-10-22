@@ -154,7 +154,7 @@ export function renderLayout(options: RenderLayoutOptions): string {
             ${headingBlock}
             <tr>
               <td class="cg-body" style="padding: ${bodyTopPad} 32px 24px; font-family: ${FONT_STACK}; color: ${BODY_COLOR}; font-size: 15px; line-height: 1.55;">
-                ${body}
+                ${inlineLinkColour(body)}
                 ${REPLY_SLOT}
               </td>
             </tr>
@@ -174,6 +174,14 @@ export function renderLayout(options: RenderLayoutOptions): string {
     </table>
   </body>
 </html>`;
+}
+
+/** Bare links in the card (partner-template HTML arrives with every attribute
+ * stripped; some templates write a plain <a href>) get the link colour inline,
+ * so a client that drops the head <style> does not paint its default blue on
+ * the dark panel. Links that carry their own style are left alone. */
+export function inlineLinkColour(html: string): string {
+  return html.replace(/<a\b(?![^>]*\bstyle\s*=)/gi, `<a style="color: ${BRAND_ICE};"`);
 }
 
 /** A table button: Outlook's Word renderer ignores padding on <a>, so the fill
@@ -236,7 +244,6 @@ export function renderInsetBlock(innerHtml: string, options: { label?: string; s
     + `${label}${innerHtml}</td></tr></table>`;
 }
 
-/** The full reply block, styled to match the frame. */
 /** The standard signature under every emailed reply: who wrote it, then the
  * same Cloud Guardian contact lines for everyone. */
 export function renderSignature(authorName?: string | null): string {
@@ -251,6 +258,7 @@ export function renderSignature(authorName?: string | null): string {
     + `</td></tr></table>`;
 }
 
+/** The full reply block, styled to match the frame. */
 export function renderReplyBlock(safeHtml: string, label = 'Our reply', authorName?: string | null): string {
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 20px; border-top: 1px solid ${RULE_COLOR};"><tr><td style="padding: 16px 0 0; border-bottom: 0;">`
     + `<p style="margin: 0 0 8px; font-family: ${MONO_STACK}; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: ${FAINT_COLOR};">// ${escapeHtml(label)}</p>`

@@ -33,7 +33,7 @@ describe('email layout inline styles', () => {
   });
 });
 
-import { EMAIL_PALETTE, renderInsetBlock, renderLinkRow, renderSummaryTable, renderTermsBlock } from './emailLayout';
+import { EMAIL_PALETTE, inlineLinkColour, renderInsetBlock, renderLinkRow, renderSummaryTable, renderTermsBlock } from './emailLayout';
 describe('billing email blocks', () => {
   it('a summary table is a presentational two-column table with escaped values', () => {
     const html = renderSummaryTable([{ label: 'Amount', value: '$50.00' }, { label: 'Method', value: '<Visa> & co' }]);
@@ -81,7 +81,7 @@ describe('Cloud Guardian frame readability', () => {
 
   it('the stock light-theme colours are gone from every block', () => {
     for (const html of blocks) {
-      expect(html).not.toMatch(/#(?:1f2937|374151|111111|0f172a|6b7280|155e75|f8fafc|f7fafc|f9fafb|ffffff|e5e7eb|d1d5db)/i);
+      expect(html).not.toMatch(/#(?:1f2937|374151|111111|0f172a|6b7280|155e75|f8fafc|f7fafc|f9fafb|ffffff|e5e7eb|d1d5db)\b/i);
     }
   });
 
@@ -104,5 +104,18 @@ describe('Cloud Guardian frame readability', () => {
     expect(html).toContain('Note from &lt;a@b&gt;');
     expect(html).toContain(`bgcolor="${EMAIL_PALETTE.surface}"`);
     expect(styleValues(html).every(value => !value.includes('"'))).toBe(true);
+  });
+});
+
+describe('bare links in the card', () => {
+  it('get the link colour inline; styled links and look-alike tags are left alone', () => {
+    expect(inlineLinkColour('<p><a href="https://x.test/a">Fix</a> <A href="y">Y</A></p>'))
+      .toBe(`<p><a style="color: ${EMAIL_PALETTE.link};" href="https://x.test/a">Fix</a> <a style="color: ${EMAIL_PALETTE.link};" href="y">Y</A></p>`);
+    expect(inlineLinkColour('<a href="z" style="color: red;">z</a><abbr>a</abbr><a>b</a>'))
+      .toBe(`<a href="z" style="color: red;">z</a><abbr>a</abbr><a style="color: ${EMAIL_PALETTE.link};">b</a>`);
+  });
+  it('the layout applies it to the body, so a partner template link stays readable without the head style', () => {
+    const html = renderLayout({ title: 't', preheader: 'p', body: '<p><a href="https://x.test/">portal</a></p>' });
+    expect(html).toContain(`<a style="color: ${EMAIL_PALETTE.link};" href="https://x.test/">portal</a>`);
   });
 });
