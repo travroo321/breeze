@@ -417,7 +417,8 @@ describe('buildInvoiceTemplate', () => {
     });
     expect(t.html).not.toMatch(/href\s*=\s*["']javascript:/i);
     expect(t.html).toContain(`href="${base.portalUrl}"`);
-    expect(t.html).toContain('<a>x</a>');
+    // The href is dropped; the layout gives the bare link the frame's link colour inline.
+    expect(t.html).toContain('<a style="color: #9FDFFF;">x</a>');
   });
 
   it('keeps the per-send note and signature around custom html', async () => {

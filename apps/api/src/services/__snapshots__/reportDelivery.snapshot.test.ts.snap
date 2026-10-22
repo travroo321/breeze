@@ -15,32 +15,62 @@ exports[`report email rendering is pinned before the reportDelivery extraction (
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="supported-color-schemes" content="dark" />
     <title>Scheduled report</title>
-    <style>p { margin: 0 0 12px; } a { color: #155e75; }</style>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Chakra+Petch:wght@600&display=swap" rel="stylesheet" />
+    <style>
+      /* Partner template HTML arrives with every attribute stripped
+         (richTextSanitize), so its tables and links are styled here. */
+      .cg-body table { border-collapse: collapse; margin: 4px 0 16px; }
+      .cg-body table td { padding: 6px 16px 6px 0; border-bottom: 1px solid #1C2537; font-size: 14px; vertical-align: top; }
+      .cg-body p { margin: 0 0 12px; }
+      .cg-body table td { color: #B4BDC5; }
+      .cg-body strong { color: #9FDFFF; font-weight: 600; }
+      .cg-body a { color: #9FDFFF; }
+    </style>
   </head>
-  <body style="margin: 0; padding: 0; background: #eef2f7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937;">
-    <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all; font-size: 1px; line-height: 1px; color: #eef2f7;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 2 records.</div>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background: #eef2f7; padding: 24px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+  <body style="margin: 0; padding: 0; background: #060B18; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #E8ECEF;">
+    <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all; font-size: 1px; line-height: 1px; color: #060B18;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 2 records.</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#060B18" style="background: #060B18; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
       <tr>
-        <td align="center">
-          <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; width: 100%; background: #ffffff; border-radius: 12px; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06); overflow: hidden;">
+        <td align="center" style="padding: 24px 12px;">
+          <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%;">
             <tr>
-              <td style="height: 3px; background: #155e75; line-height: 3px; font-size: 0;">&nbsp;</td>
-            </tr>
-            <tr>
-              <td style="padding: 28px 32px 4px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">
-                <h1 style="margin: 0; font-size: 20px; line-height: 1.3; color: #0f172a; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Scheduled report ready</h1>
+              <td bgcolor="#060B18" style="background: #060B18; padding: 8px 4px 20px;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td valign="middle" style="padding-right: 14px;"><img src="https://cloud-guardian.com/assets/brand/cg-logo.png" width="42" height="56" alt="Cloud Guardian" style="display: block; border: 0; width: 42px; height: 56px;" /></td>
+                    <td valign="middle" style="font-family: 'Chakra Petch', Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 17px; font-weight: 600; letter-spacing: 0.16em; line-height: 1;"><span style="color: #F4F6F7;">CLOUD</span>&nbsp;<span style="color: #4DA3FF;">GUARDIAN</span></td>
+                  </tr>
+                </table>
               </td>
             </tr>
             <tr>
-              <td style="padding: 8px 32px 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937; font-size: 15px; line-height: 1.55;">
-                <p style="margin: 0px 0 12px; font-size: 15px; line-height: 1.55; color: #1f2937; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 2 records.</p><p style="margin: 0px 0 12px; font-size: 13px; line-height: 1.55; color: #6b7280; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">The data is attached as CSV; open Breeze for the fully formatted report.</p><a href="http://localhost:4321/reports" style="display: inline-block; padding: 12px 22px; border-radius: 8px; background: #155e75; color: #ffffff; font-size: 14px; font-weight: 500; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">View in Breeze</a>
+              <td bgcolor="#0B1426" style="background: #0B1426; border: 1px solid #1C2537; border-top: 2px solid #4DA3FF; border-radius: 6px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="padding: 28px 32px 4px; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                <h1 style="margin: 0; font-size: 22px; line-height: 1.3; color: #F4F6F7; font-weight: 500; letter-spacing: -0.01em; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Scheduled report ready</h1>
+              </td>
+            </tr>
+            <tr>
+              <td class="cg-body" style="padding: 10px 32px 24px; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #E8ECEF; font-size: 15px; line-height: 1.55;">
+                <p style="margin: 0px 0 12px; font-size: 15px; line-height: 1.55; color: #E8ECEF; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 2 records.</p><p style="margin: 0px 0 12px; font-size: 13px; line-height: 1.55; color: #8F99A3; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">The data is attached as CSV; open Breeze for the fully formatted report.</p><table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 4px 0;"><tr><td bgcolor="#4DA3FF" style="padding: 0; background: #4DA3FF; border-radius: 4px; border: 1px solid #4DA3FF; box-shadow: 0 0 12px rgba(77,163,255,0.5);"><a href="http://localhost:4321/reports" style="display: inline-block; padding: 12px 22px; color: #060B18; font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;">View in Breeze &rsaquo;</a></td></tr></table>
+                <!--cg-reply-slot-->
               </td>
             </tr>
             
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td bgcolor="#060B18" style="background: #060B18; padding: 20px 4px 8px; border-bottom: 1px solid #1A2232; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                <p style="margin: 0 0 4px; font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #FFC06A;">Shielding your digital footprint</p>
+                <p style="margin: 0; font-size: 12px; line-height: 1.6; color: #8F99A3;">Cloud Guardian &middot; <a href="tel:+17327435472" style="color: #9FDFFF; text-decoration: none;">(732) 743-5472</a> &middot; <a href="https://cloud-guardian.com" style="color: #9FDFFF; text-decoration: none;">cloud-guardian.com</a></p>
+              </td>
+            </tr>
           </table>
-          <p style="margin: 16px 0 0; font-size: 12px; color: #94a3b8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Breeze RMM</p>
         </td>
       </tr>
     </table>
@@ -74,32 +104,62 @@ exports[`report email rendering is pinned before the reportDelivery extraction (
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="supported-color-schemes" content="dark" />
     <title>Scheduled report</title>
-    <style>p { margin: 0 0 12px; } a { color: #155e75; }</style>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Chakra+Petch:wght@600&display=swap" rel="stylesheet" />
+    <style>
+      /* Partner template HTML arrives with every attribute stripped
+         (richTextSanitize), so its tables and links are styled here. */
+      .cg-body table { border-collapse: collapse; margin: 4px 0 16px; }
+      .cg-body table td { padding: 6px 16px 6px 0; border-bottom: 1px solid #1C2537; font-size: 14px; vertical-align: top; }
+      .cg-body p { margin: 0 0 12px; }
+      .cg-body table td { color: #B4BDC5; }
+      .cg-body strong { color: #9FDFFF; font-weight: 600; }
+      .cg-body a { color: #9FDFFF; }
+    </style>
   </head>
-  <body style="margin: 0; padding: 0; background: #eef2f7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937;">
-    <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all; font-size: 1px; line-height: 1px; color: #eef2f7;">Posture score 79.</div>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background: #eef2f7; padding: 24px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+  <body style="margin: 0; padding: 0; background: #060B18; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #E8ECEF;">
+    <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all; font-size: 1px; line-height: 1px; color: #060B18;">Posture score 79.</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#060B18" style="background: #060B18; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
       <tr>
-        <td align="center">
-          <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; width: 100%; background: #ffffff; border-radius: 12px; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06); overflow: hidden;">
+        <td align="center" style="padding: 24px 12px;">
+          <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%;">
             <tr>
-              <td style="height: 3px; background: #155e75; line-height: 3px; font-size: 0;">&nbsp;</td>
-            </tr>
-            <tr>
-              <td style="padding: 28px 32px 4px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">
-                <h1 style="margin: 0; font-size: 20px; line-height: 1.3; color: #0f172a; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Scheduled report ready</h1>
+              <td bgcolor="#060B18" style="background: #060B18; padding: 8px 4px 20px;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td valign="middle" style="padding-right: 14px;"><img src="https://cloud-guardian.com/assets/brand/cg-logo.png" width="42" height="56" alt="Cloud Guardian" style="display: block; border: 0; width: 42px; height: 56px;" /></td>
+                    <td valign="middle" style="font-family: 'Chakra Petch', Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 17px; font-weight: 600; letter-spacing: 0.16em; line-height: 1;"><span style="color: #F4F6F7;">CLOUD</span>&nbsp;<span style="color: #4DA3FF;">GUARDIAN</span></td>
+                  </tr>
+                </table>
               </td>
             </tr>
             <tr>
-              <td style="padding: 8px 32px 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937; font-size: 15px; line-height: 1.55;">
-                <p style="margin: 0px 0 12px; font-size: 15px; line-height: 1.55; color: #1f2937; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 2 records.</p><p style="margin: 0px 0 12px; font-size: 15px; line-height: 1.55; color: #1f2937; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Posture score 79.</p><p style="margin: 0px 0 12px; font-size: 13px; line-height: 1.55; color: #6b7280; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">The data is attached as CSV; open Breeze for the fully formatted report.</p><a href="http://localhost:4321/reports" style="display: inline-block; padding: 12px 22px; border-radius: 8px; background: #155e75; color: #ffffff; font-size: 14px; font-weight: 500; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">View in Breeze</a>
+              <td bgcolor="#0B1426" style="background: #0B1426; border: 1px solid #1C2537; border-top: 2px solid #4DA3FF; border-radius: 6px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="padding: 28px 32px 4px; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                <h1 style="margin: 0; font-size: 22px; line-height: 1.3; color: #F4F6F7; font-weight: 500; letter-spacing: -0.01em; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Scheduled report ready</h1>
+              </td>
+            </tr>
+            <tr>
+              <td class="cg-body" style="padding: 10px 32px 24px; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #E8ECEF; font-size: 15px; line-height: 1.55;">
+                <p style="margin: 0px 0 12px; font-size: 15px; line-height: 1.55; color: #E8ECEF; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 2 records.</p><p style="margin: 0px 0 12px; font-size: 15px; line-height: 1.55; color: #E8ECEF; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Posture score 79.</p><p style="margin: 0px 0 12px; font-size: 13px; line-height: 1.55; color: #8F99A3; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">The data is attached as CSV; open Breeze for the fully formatted report.</p><table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 4px 0;"><tr><td bgcolor="#4DA3FF" style="padding: 0; background: #4DA3FF; border-radius: 4px; border: 1px solid #4DA3FF; box-shadow: 0 0 12px rgba(77,163,255,0.5);"><a href="http://localhost:4321/reports" style="display: inline-block; padding: 12px 22px; color: #060B18; font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;">View in Breeze &rsaquo;</a></td></tr></table>
+                <!--cg-reply-slot-->
               </td>
             </tr>
             
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td bgcolor="#060B18" style="background: #060B18; padding: 20px 4px 8px; border-bottom: 1px solid #1A2232; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                <p style="margin: 0 0 4px; font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #FFC06A;">Shielding your digital footprint</p>
+                <p style="margin: 0; font-size: 12px; line-height: 1.6; color: #8F99A3;">Cloud Guardian &middot; <a href="tel:+17327435472" style="color: #9FDFFF; text-decoration: none;">(732) 743-5472</a> &middot; <a href="https://cloud-guardian.com" style="color: #9FDFFF; text-decoration: none;">cloud-guardian.com</a></p>
+              </td>
+            </tr>
           </table>
-          <p style="margin: 16px 0 0; font-size: 12px; color: #94a3b8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Breeze RMM</p>
         </td>
       </tr>
     </table>
@@ -127,32 +187,62 @@ exports[`report email rendering is pinned before the reportDelivery extraction (
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="supported-color-schemes" content="dark" />
     <title>Scheduled report failed</title>
-    <style>p { margin: 0 0 12px; } a { color: #155e75; }</style>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Chakra+Petch:wght@600&display=swap" rel="stylesheet" />
+    <style>
+      /* Partner template HTML arrives with every attribute stripped
+         (richTextSanitize), so its tables and links are styled here. */
+      .cg-body table { border-collapse: collapse; margin: 4px 0 16px; }
+      .cg-body table td { padding: 6px 16px 6px 0; border-bottom: 1px solid #1C2537; font-size: 14px; vertical-align: top; }
+      .cg-body p { margin: 0 0 12px; }
+      .cg-body table td { color: #B4BDC5; }
+      .cg-body strong { color: #9FDFFF; font-weight: 600; }
+      .cg-body a { color: #9FDFFF; }
+    </style>
   </head>
-  <body style="margin: 0; padding: 0; background: #eef2f7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937;">
-    <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all; font-size: 1px; line-height: 1px; color: #eef2f7;">Nightly inventory could not be generated</div>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background: #eef2f7; padding: 24px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+  <body style="margin: 0; padding: 0; background: #060B18; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #E8ECEF;">
+    <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all; font-size: 1px; line-height: 1px; color: #060B18;">Nightly inventory could not be generated</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#060B18" style="background: #060B18; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
       <tr>
-        <td align="center">
-          <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; width: 100%; background: #ffffff; border-radius: 12px; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06); overflow: hidden;">
+        <td align="center" style="padding: 24px 12px;">
+          <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%;">
             <tr>
-              <td style="height: 3px; background: #155e75; line-height: 3px; font-size: 0;">&nbsp;</td>
-            </tr>
-            <tr>
-              <td style="padding: 28px 32px 4px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">
-                <h1 style="margin: 0; font-size: 20px; line-height: 1.3; color: #0f172a; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Scheduled report failed</h1>
+              <td bgcolor="#060B18" style="background: #060B18; padding: 8px 4px 20px;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td valign="middle" style="padding-right: 14px;"><img src="https://cloud-guardian.com/assets/brand/cg-logo.png" width="42" height="56" alt="Cloud Guardian" style="display: block; border: 0; width: 42px; height: 56px;" /></td>
+                    <td valign="middle" style="font-family: 'Chakra Petch', Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 17px; font-weight: 600; letter-spacing: 0.16em; line-height: 1;"><span style="color: #F4F6F7;">CLOUD</span>&nbsp;<span style="color: #4DA3FF;">GUARDIAN</span></td>
+                  </tr>
+                </table>
               </td>
             </tr>
             <tr>
-              <td style="padding: 8px 32px 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937; font-size: 15px; line-height: 1.55;">
-                <p style="margin: 0px 0 12px; font-size: 15px; line-height: 1.55; color: #1f2937; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">We couldn't generate <strong>Nightly inventory</strong> for its scheduled run. No report was produced.</p><p style="margin: 0px 0 12px; font-size: 15px; line-height: 1.55; color: #1f2937; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Your team can run it manually, or wait for the next scheduled occurrence.</p><a href="http://localhost:4321/reports" style="display: inline-block; padding: 12px 22px; border-radius: 8px; background: #155e75; color: #ffffff; font-size: 14px; font-weight: 500; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">View reports</a>
+              <td bgcolor="#0B1426" style="background: #0B1426; border: 1px solid #1C2537; border-top: 2px solid #4DA3FF; border-radius: 6px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="padding: 28px 32px 4px; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                <h1 style="margin: 0; font-size: 22px; line-height: 1.3; color: #F4F6F7; font-weight: 500; letter-spacing: -0.01em; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Scheduled report failed</h1>
+              </td>
+            </tr>
+            <tr>
+              <td class="cg-body" style="padding: 10px 32px 24px; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #E8ECEF; font-size: 15px; line-height: 1.55;">
+                <p style="margin: 0px 0 12px; font-size: 15px; line-height: 1.55; color: #E8ECEF; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">We couldn't generate <strong>Nightly inventory</strong> for its scheduled run. No report was produced.</p><p style="margin: 0px 0 12px; font-size: 15px; line-height: 1.55; color: #E8ECEF; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Your team can run it manually, or wait for the next scheduled occurrence.</p><table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 4px 0;"><tr><td bgcolor="#4DA3FF" style="padding: 0; background: #4DA3FF; border-radius: 4px; border: 1px solid #4DA3FF; box-shadow: 0 0 12px rgba(77,163,255,0.5);"><a href="http://localhost:4321/reports" style="display: inline-block; padding: 12px 22px; color: #060B18; font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;">View reports &rsaquo;</a></td></tr></table>
+                <!--cg-reply-slot-->
               </td>
             </tr>
             
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td bgcolor="#060B18" style="background: #060B18; padding: 20px 4px 8px; border-bottom: 1px solid #1A2232; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                <p style="margin: 0 0 4px; font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #FFC06A;">Shielding your digital footprint</p>
+                <p style="margin: 0; font-size: 12px; line-height: 1.6; color: #8F99A3;">Cloud Guardian &middot; <a href="tel:+17327435472" style="color: #9FDFFF; text-decoration: none;">(732) 743-5472</a> &middot; <a href="https://cloud-guardian.com" style="color: #9FDFFF; text-decoration: none;">cloud-guardian.com</a></p>
+              </td>
+            </tr>
           </table>
-          <p style="margin: 16px 0 0; font-size: 12px; color: #94a3b8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Breeze RMM</p>
         </td>
       </tr>
     </table>
@@ -174,32 +264,62 @@ exports[`report email rendering is pinned before the reportDelivery extraction (
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="supported-color-schemes" content="dark" />
     <title>Scheduled report</title>
-    <style>p { margin: 0 0 12px; } a { color: #155e75; }</style>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Chakra+Petch:wght@600&display=swap" rel="stylesheet" />
+    <style>
+      /* Partner template HTML arrives with every attribute stripped
+         (richTextSanitize), so its tables and links are styled here. */
+      .cg-body table { border-collapse: collapse; margin: 4px 0 16px; }
+      .cg-body table td { padding: 6px 16px 6px 0; border-bottom: 1px solid #1C2537; font-size: 14px; vertical-align: top; }
+      .cg-body p { margin: 0 0 12px; }
+      .cg-body table td { color: #B4BDC5; }
+      .cg-body strong { color: #9FDFFF; font-weight: 600; }
+      .cg-body a { color: #9FDFFF; }
+    </style>
   </head>
-  <body style="margin: 0; padding: 0; background: #eef2f7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937;">
-    <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all; font-size: 1px; line-height: 1px; color: #eef2f7;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 60000 records.</div>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background: #eef2f7; padding: 24px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+  <body style="margin: 0; padding: 0; background: #060B18; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #E8ECEF;">
+    <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all; font-size: 1px; line-height: 1px; color: #060B18;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 60000 records.</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#060B18" style="background: #060B18; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
       <tr>
-        <td align="center">
-          <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; width: 100%; background: #ffffff; border-radius: 12px; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06); overflow: hidden;">
+        <td align="center" style="padding: 24px 12px;">
+          <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%;">
             <tr>
-              <td style="height: 3px; background: #155e75; line-height: 3px; font-size: 0;">&nbsp;</td>
-            </tr>
-            <tr>
-              <td style="padding: 28px 32px 4px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">
-                <h1 style="margin: 0; font-size: 20px; line-height: 1.3; color: #0f172a; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Scheduled report ready</h1>
+              <td bgcolor="#060B18" style="background: #060B18; padding: 8px 4px 20px;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td valign="middle" style="padding-right: 14px;"><img src="https://cloud-guardian.com/assets/brand/cg-logo.png" width="42" height="56" alt="Cloud Guardian" style="display: block; border: 0; width: 42px; height: 56px;" /></td>
+                    <td valign="middle" style="font-family: 'Chakra Petch', Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 17px; font-weight: 600; letter-spacing: 0.16em; line-height: 1;"><span style="color: #F4F6F7;">CLOUD</span>&nbsp;<span style="color: #4DA3FF;">GUARDIAN</span></td>
+                  </tr>
+                </table>
               </td>
             </tr>
             <tr>
-              <td style="padding: 8px 32px 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937; font-size: 15px; line-height: 1.55;">
-                <p style="margin: 0px 0 12px; font-size: 15px; line-height: 1.55; color: #1f2937; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 60000 records.</p><p style="margin: 0px 0 12px; font-size: 13px; line-height: 1.55; color: #6b7280; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Open Breeze to view and download the formatted report.</p><a href="http://localhost:4321/reports" style="display: inline-block; padding: 12px 22px; border-radius: 8px; background: #155e75; color: #ffffff; font-size: 14px; font-weight: 500; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">View in Breeze</a>
+              <td bgcolor="#0B1426" style="background: #0B1426; border: 1px solid #1C2537; border-top: 2px solid #4DA3FF; border-radius: 6px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="padding: 28px 32px 4px; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                <h1 style="margin: 0; font-size: 22px; line-height: 1.3; color: #F4F6F7; font-weight: 500; letter-spacing: -0.01em; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Scheduled report ready</h1>
+              </td>
+            </tr>
+            <tr>
+              <td class="cg-body" style="padding: 10px 32px 24px; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #E8ECEF; font-size: 15px; line-height: 1.55;">
+                <p style="margin: 0px 0 12px; font-size: 15px; line-height: 1.55; color: #E8ECEF; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 60000 records.</p><p style="margin: 0px 0 12px; font-size: 13px; line-height: 1.55; color: #8F99A3; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Open Breeze to view and download the formatted report.</p><table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 4px 0;"><tr><td bgcolor="#4DA3FF" style="padding: 0; background: #4DA3FF; border-radius: 4px; border: 1px solid #4DA3FF; box-shadow: 0 0 12px rgba(77,163,255,0.5);"><a href="http://localhost:4321/reports" style="display: inline-block; padding: 12px 22px; color: #060B18; font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;">View in Breeze &rsaquo;</a></td></tr></table>
+                <!--cg-reply-slot-->
               </td>
             </tr>
             
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td bgcolor="#060B18" style="background: #060B18; padding: 20px 4px 8px; border-bottom: 1px solid #1A2232; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                <p style="margin: 0 0 4px; font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #FFC06A;">Shielding your digital footprint</p>
+                <p style="margin: 0; font-size: 12px; line-height: 1.6; color: #8F99A3;">Cloud Guardian &middot; <a href="tel:+17327435472" style="color: #9FDFFF; text-decoration: none;">(732) 743-5472</a> &middot; <a href="https://cloud-guardian.com" style="color: #9FDFFF; text-decoration: none;">cloud-guardian.com</a></p>
+              </td>
+            </tr>
           </table>
-          <p style="margin: 16px 0 0; font-size: 12px; color: #94a3b8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Breeze RMM</p>
         </td>
       </tr>
     </table>
@@ -226,32 +346,62 @@ exports[`report email rendering is pinned before the reportDelivery extraction (
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="supported-color-schemes" content="dark" />
     <title>Scheduled report</title>
-    <style>p { margin: 0 0 12px; } a { color: #155e75; }</style>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Chakra+Petch:wght@600&display=swap" rel="stylesheet" />
+    <style>
+      /* Partner template HTML arrives with every attribute stripped
+         (richTextSanitize), so its tables and links are styled here. */
+      .cg-body table { border-collapse: collapse; margin: 4px 0 16px; }
+      .cg-body table td { padding: 6px 16px 6px 0; border-bottom: 1px solid #1C2537; font-size: 14px; vertical-align: top; }
+      .cg-body p { margin: 0 0 12px; }
+      .cg-body table td { color: #B4BDC5; }
+      .cg-body strong { color: #9FDFFF; font-weight: 600; }
+      .cg-body a { color: #9FDFFF; }
+    </style>
   </head>
-  <body style="margin: 0; padding: 0; background: #eef2f7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937;">
-    <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all; font-size: 1px; line-height: 1px; color: #eef2f7;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 2 records.</div>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background: #eef2f7; padding: 24px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+  <body style="margin: 0; padding: 0; background: #060B18; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #E8ECEF;">
+    <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all; font-size: 1px; line-height: 1px; color: #060B18;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 2 records.</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#060B18" style="background: #060B18; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
       <tr>
-        <td align="center">
-          <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; width: 100%; background: #ffffff; border-radius: 12px; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06); overflow: hidden;">
+        <td align="center" style="padding: 24px 12px;">
+          <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%;">
             <tr>
-              <td style="height: 3px; background: #155e75; line-height: 3px; font-size: 0;">&nbsp;</td>
-            </tr>
-            <tr>
-              <td style="padding: 28px 32px 4px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">
-                <h1 style="margin: 0; font-size: 20px; line-height: 1.3; color: #0f172a; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Scheduled report ready</h1>
+              <td bgcolor="#060B18" style="background: #060B18; padding: 8px 4px 20px;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td valign="middle" style="padding-right: 14px;"><img src="https://cloud-guardian.com/assets/brand/cg-logo.png" width="42" height="56" alt="Cloud Guardian" style="display: block; border: 0; width: 42px; height: 56px;" /></td>
+                    <td valign="middle" style="font-family: 'Chakra Petch', Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 17px; font-weight: 600; letter-spacing: 0.16em; line-height: 1;"><span style="color: #F4F6F7;">CLOUD</span>&nbsp;<span style="color: #4DA3FF;">GUARDIAN</span></td>
+                  </tr>
+                </table>
               </td>
             </tr>
             <tr>
-              <td style="padding: 8px 32px 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937; font-size: 15px; line-height: 1.55;">
-                <p style="margin: 0px 0 12px; font-size: 15px; line-height: 1.55; color: #1f2937; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 2 records.</p><p style="margin: 0px 0 12px; font-size: 13px; line-height: 1.55; color: #6b7280; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Open Breeze to view and download the formatted report.</p><a href="http://localhost:4321/reports" style="display: inline-block; padding: 12px 22px; border-radius: 8px; background: #155e75; color: #ffffff; font-size: 14px; font-weight: 500; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">View in Breeze</a>
+              <td bgcolor="#0B1426" style="background: #0B1426; border: 1px solid #1C2537; border-top: 2px solid #4DA3FF; border-radius: 6px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="padding: 28px 32px 4px; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                <h1 style="margin: 0; font-size: 22px; line-height: 1.3; color: #F4F6F7; font-weight: 500; letter-spacing: -0.01em; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Scheduled report ready</h1>
+              </td>
+            </tr>
+            <tr>
+              <td class="cg-body" style="padding: 10px 32px 24px; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #E8ECEF; font-size: 15px; line-height: 1.55;">
+                <p style="margin: 0px 0 12px; font-size: 15px; line-height: 1.55; color: #E8ECEF; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 2 records.</p><p style="margin: 0px 0 12px; font-size: 13px; line-height: 1.55; color: #8F99A3; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Open Breeze to view and download the formatted report.</p><table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 4px 0;"><tr><td bgcolor="#4DA3FF" style="padding: 0; background: #4DA3FF; border-radius: 4px; border: 1px solid #4DA3FF; box-shadow: 0 0 12px rgba(77,163,255,0.5);"><a href="http://localhost:4321/reports" style="display: inline-block; padding: 12px 22px; color: #060B18; font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;">View in Breeze &rsaquo;</a></td></tr></table>
+                <!--cg-reply-slot-->
               </td>
             </tr>
             
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td bgcolor="#060B18" style="background: #060B18; padding: 20px 4px 8px; border-bottom: 1px solid #1A2232; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                <p style="margin: 0 0 4px; font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #FFC06A;">Shielding your digital footprint</p>
+                <p style="margin: 0; font-size: 12px; line-height: 1.6; color: #8F99A3;">Cloud Guardian &middot; <a href="tel:+17327435472" style="color: #9FDFFF; text-decoration: none;">(732) 743-5472</a> &middot; <a href="https://cloud-guardian.com" style="color: #9FDFFF; text-decoration: none;">cloud-guardian.com</a></p>
+              </td>
+            </tr>
           </table>
-          <p style="margin: 16px 0 0; font-size: 12px; color: #94a3b8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Breeze RMM</p>
         </td>
       </tr>
     </table>
@@ -283,32 +433,62 @@ exports[`report email rendering is pinned before the reportDelivery extraction (
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="supported-color-schemes" content="dark" />
     <title>Scheduled report</title>
-    <style>p { margin: 0 0 12px; } a { color: #155e75; }</style>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Chakra+Petch:wght@600&display=swap" rel="stylesheet" />
+    <style>
+      /* Partner template HTML arrives with every attribute stripped
+         (richTextSanitize), so its tables and links are styled here. */
+      .cg-body table { border-collapse: collapse; margin: 4px 0 16px; }
+      .cg-body table td { padding: 6px 16px 6px 0; border-bottom: 1px solid #1C2537; font-size: 14px; vertical-align: top; }
+      .cg-body p { margin: 0 0 12px; }
+      .cg-body table td { color: #B4BDC5; }
+      .cg-body strong { color: #9FDFFF; font-weight: 600; }
+      .cg-body a { color: #9FDFFF; }
+    </style>
   </head>
-  <body style="margin: 0; padding: 0; background: #eef2f7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937;">
-    <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all; font-size: 1px; line-height: 1px; color: #eef2f7;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 2 records.</div>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background: #eef2f7; padding: 24px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+  <body style="margin: 0; padding: 0; background: #060B18; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #E8ECEF;">
+    <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all; font-size: 1px; line-height: 1px; color: #060B18;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 2 records.</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#060B18" style="background: #060B18; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
       <tr>
-        <td align="center">
-          <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; width: 100%; background: #ffffff; border-radius: 12px; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06); overflow: hidden;">
+        <td align="center" style="padding: 24px 12px;">
+          <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%;">
             <tr>
-              <td style="height: 3px; background: #155e75; line-height: 3px; font-size: 0;">&nbsp;</td>
-            </tr>
-            <tr>
-              <td style="padding: 28px 32px 4px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">
-                <h1 style="margin: 0; font-size: 20px; line-height: 1.3; color: #0f172a; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Scheduled report ready</h1>
+              <td bgcolor="#060B18" style="background: #060B18; padding: 8px 4px 20px;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td valign="middle" style="padding-right: 14px;"><img src="https://cloud-guardian.com/assets/brand/cg-logo.png" width="42" height="56" alt="Cloud Guardian" style="display: block; border: 0; width: 42px; height: 56px;" /></td>
+                    <td valign="middle" style="font-family: 'Chakra Petch', Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 17px; font-weight: 600; letter-spacing: 0.16em; line-height: 1;"><span style="color: #F4F6F7;">CLOUD</span>&nbsp;<span style="color: #4DA3FF;">GUARDIAN</span></td>
+                  </tr>
+                </table>
               </td>
             </tr>
             <tr>
-              <td style="padding: 8px 32px 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937; font-size: 15px; line-height: 1.55;">
-                <p style="margin: 0px 0 12px; font-size: 15px; line-height: 1.55; color: #1f2937; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 2 records.</p><p style="margin: 0px 0 12px; font-size: 13px; line-height: 1.55; color: #6b7280; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">The formatted report is attached as a PDF.</p><a href="http://localhost:4321/reports" style="display: inline-block; padding: 12px 22px; border-radius: 8px; background: #155e75; color: #ffffff; font-size: 14px; font-weight: 500; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">View in Breeze</a>
+              <td bgcolor="#0B1426" style="background: #0B1426; border: 1px solid #1C2537; border-top: 2px solid #4DA3FF; border-radius: 6px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="padding: 28px 32px 4px; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                <h1 style="margin: 0; font-size: 22px; line-height: 1.3; color: #F4F6F7; font-weight: 500; letter-spacing: -0.01em; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Scheduled report ready</h1>
+              </td>
+            </tr>
+            <tr>
+              <td class="cg-body" style="padding: 10px 32px 24px; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #E8ECEF; font-size: 15px; line-height: 1.55;">
+                <p style="margin: 0px 0 12px; font-size: 15px; line-height: 1.55; color: #E8ECEF; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Your scheduled report &quot;Nightly inventory&quot; has been generated with 2 records.</p><p style="margin: 0px 0 12px; font-size: 13px; line-height: 1.55; color: #8F99A3; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">The formatted report is attached as a PDF.</p><table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 4px 0;"><tr><td bgcolor="#4DA3FF" style="padding: 0; background: #4DA3FF; border-radius: 4px; border: 1px solid #4DA3FF; box-shadow: 0 0 12px rgba(77,163,255,0.5);"><a href="http://localhost:4321/reports" style="display: inline-block; padding: 12px 22px; color: #060B18; font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;">View in Breeze &rsaquo;</a></td></tr></table>
+                <!--cg-reply-slot-->
               </td>
             </tr>
             
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td bgcolor="#060B18" style="background: #060B18; padding: 20px 4px 8px; border-bottom: 1px solid #1A2232; font-family: Geist, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                <p style="margin: 0 0 4px; font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #FFC06A;">Shielding your digital footprint</p>
+                <p style="margin: 0; font-size: 12px; line-height: 1.6; color: #8F99A3;">Cloud Guardian &middot; <a href="tel:+17327435472" style="color: #9FDFFF; text-decoration: none;">(732) 743-5472</a> &middot; <a href="https://cloud-guardian.com" style="color: #9FDFFF; text-decoration: none;">cloud-guardian.com</a></p>
+              </td>
+            </tr>
           </table>
-          <p style="margin: 16px 0 0; font-size: 12px; color: #94a3b8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;">Breeze RMM</p>
         </td>
       </tr>
     </table>

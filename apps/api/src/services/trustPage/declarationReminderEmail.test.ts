@@ -24,7 +24,9 @@ describe('buildDeclarationReminderEmail', () => {
 
   it('without an absolute link it omits the button rather than sending a relative URL', () => {
     const out = buildDeclarationReminderEmail({ ...base, link: null });
-    expect(out.html).not.toContain('href=');
+    // No button: the only links are the frame's own footer links (phone, site).
+    expect(out.html.match(/<a\b[^>]*>/g)?.map(tag => tag.match(/href="([^"]*)"/)?.[1]))
+      .toEqual(['tel:+17327435472', 'https://cloud-guardian.com']);
     expect(out.text).not.toContain('http');
   });
 });

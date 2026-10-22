@@ -186,7 +186,7 @@ it('states the total charge and freezes the invoice number, provider, method and
   expect(rendered.html).toContain('>Total charge</td>');
   expect(rendered.text).not.toMatch(/USD \d/);
   for (const body of [rendered.html, rendered.text]) { expect(body).toContain('INV-1'); expect(body).toContain('Partner'); }
-  expect(rendered.html.match(/<p style="margin: 16px 0 0;[^>]*>([^<]*)<\/p>/)?.[1]).toBe('Partner');
+  expect(rendered.html.match(/<p style="margin: 0; font-size: 12px; line-height: 1\.6;[^>]*>([^<]*) &middot; <a href="tel:/)?.[1]).toBe('Partner');
   // R12: the inbox preview agrees with the facts table: the fee is a maximum, so the total is too.
   expect(rendered.html).toContain('>$101.00 will be charged on or around');
   expect(rendered.text).not.toMatch(/up to \$1\.00/i);

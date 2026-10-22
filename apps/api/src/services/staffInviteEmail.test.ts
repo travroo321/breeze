@@ -16,7 +16,7 @@ describe('buildStaffInviteTemplate', () => {
     expect(t.text).toContain('Tess invited you to Acme Co on Breeze.');
     expect(t.text).toContain(`Accept invitation: ${inviteUrl}`);
     expect(t.text).toContain('expires in 7 days');
-    expect(t.html).toContain('Breeze RMM');
+    expect(t.html).toContain('>Cloud Guardian &middot; ');
   });
 
   it('without an org keeps the generic subject and heading', () => {
@@ -53,11 +53,12 @@ describe('buildStaffInviteTemplate', () => {
     expect(t.text).not.toContain('invited you');
   });
 
-  it('brands the footer with the partner name, defaulting to Breeze RMM', () => {
+  it('brands the footer with the partner name, defaulting to Cloud Guardian (the frame)', () => {
     const branded = buildStaffInviteTemplate({ to: 'a@b.test', inviteUrl, partnerName: 'Fix-It MSP' });
     expect(branded.html).toContain('Fix-It MSP');
-    expect(branded.html).not.toContain('Breeze RMM');
-    expect(buildStaffInviteTemplate({ to: 'a@b.test', inviteUrl }).html).toContain('Breeze RMM');
+    expect(branded.html).toContain('>Fix-It MSP &middot; ');
+    expect(branded.html).not.toContain('>Cloud Guardian &middot; ');
+    expect(buildStaffInviteTemplate({ to: 'a@b.test', inviteUrl }).html).toContain('>Cloud Guardian &middot; ');
   });
 
   it('escapes variables and strips a javascript: href built from a variable', () => {

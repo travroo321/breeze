@@ -31,7 +31,8 @@ describe('templates', () => {
       purpose: '<img src=x onerror=alert(1)>', reviewUrl: 'https://app.example.test/organizations/o#trust',
     });
     expect(m.html).not.toContain('<script>');
-    expect(m.html).not.toContain('<img');
+    // The frame's own logo is an <img>; the requester's text must not become one.
+    expect(m.html).not.toContain('<img src=x');
     expect(m.html).toContain('&lt;script&gt;');
     expect(m.html).toContain('Evil &amp; Co');
   });

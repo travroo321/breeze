@@ -210,7 +210,7 @@ describe('method-unusable notice for a due schedule with no attempt of its own',
   });
 });
 
-const footerBrand = (html: string) => html.match(/<p style="margin: 16px 0 0;[^>]*>([^<]*)<\/p>/)?.[1];
+const footerBrand = (html: string) => html.match(/<p style="margin: 0; font-size: 12px; line-height: 1\.6;[^>]*>([^<]*) &middot; <a href="tel:/)?.[1];
 const lastQueued = () => (h.enqueue.mock.calls.at(-1)![1] as { rendered: { text: string; html: string; frozen: Record<string, unknown> } }).rendered;
 describe('client payment notices name the invoice, the provider and the method (D-8, D-23, D-26)', () => {
   beforeEach(() => {

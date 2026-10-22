@@ -88,7 +88,8 @@ describe('payment notices', () => {
       expect(once(out.text, value), value).toBe(1);
     }
     expect(out.html).toContain('>Paid with</td>');
-    expect(out.html).toContain('>Example MSP</p>');
+    // The frame's footer: the brand name, then the phone and site links.
+    expect(out.html).toContain('>Example MSP &middot; <a href="tel:');
     expect(out.frozen).toEqual(receipt.frozen);
   });
   it('a fee-free receipt prints no fee or total row; "online payment" is capitalized in the table', async () => {
