@@ -26,7 +26,9 @@ it('uses the shared shell, names the request and escapes partner-controlled text
 it('never carries a challenge number or reverse code', () => {
   const result = buildCallerVerificationTemplate({ partnerName: 'Example MSP', technicianLabel: 'Taylor', requestLabel: 'disable the account for Alex', url: 'https://app.example.com/verify/' + 'B'.repeat(43) });
   const body = `${result.subject}\n${result.html.replace(/<head[\s\S]*?<\/head>/i, ' ').replace(/<[^>]+>/g, ' ').replace(/&#?\w+;/g, ' ')}\n${result.text}`
-    .replaceAll('https://app.example.com/verify/' + 'B'.repeat(43), '');
+    .replaceAll('https://app.example.com/verify/' + 'B'.repeat(43), '')
+    // The frame's footer carries the Cloud Guardian phone number on every email.
+    .replaceAll('(732) 743-5472', '');
   // Only "10 minutes" may appear as a number.
   expect(body.match(/\d+/g)?.filter((n) => n !== '10') ?? []).toEqual([]);
 });

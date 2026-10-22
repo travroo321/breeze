@@ -1166,7 +1166,8 @@ describe('assignee notification: rich email', () => {
     await handleTicketEvent(event as never);
 
     const html = (sendEmailMock.mock.calls[0]![0] as { html: string }).html;
-    expect(html).not.toContain('<img');
+    // The frame's own logo is an <img>; no interpolated value may become one.
+    expect(html).not.toContain('<img src=x');
     expect(html.split('&lt;img src=x onerror=alert(1)&gt;').length - 1).toBeGreaterThanOrEqual(6);
   });
 

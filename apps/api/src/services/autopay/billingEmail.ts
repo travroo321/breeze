@@ -1,5 +1,5 @@
 import { formatCalendarDate, formatMoney, type EmailTemplateId } from '@breeze/shared';
-import { escapeHtml, renderLinkRow, renderSummaryTable, renderTermsBlock } from '../emailLayout';
+import { EMAIL_PALETTE, escapeHtml, renderLinkRow, renderSummaryTable, renderTermsBlock } from '../emailLayout';
 import { renderPartnerEmail, type PartnerEmailCustom } from '../emailTemplates/renderPartnerEmail';
 
 /**
@@ -35,7 +35,7 @@ function checkedUrl(value: string): string {
   return value;
 }
 const paragraph = (inner: string, muted = false) =>
-  `<p style="margin: 0 0 12px; font-size: ${muted ? '13px' : '15px'}; line-height: 1.55; color: ${muted ? '#6b7280' : '#1f2937'};">${inner}</p>`;
+  `<p style="margin: 0 0 12px; font-size: ${muted ? '13px' : '15px'}; line-height: 1.55; color: ${muted ? EMAIL_PALETTE.muted : EMAIL_PALETTE.body};">${inner}</p>`;
 
 export function renderBillingEmail(input: BillingEmailInput): { subject: string; html: string; text: string } {
   const links = (input.links ?? []).map(link => ({ ...link, url: checkedUrl(link.url) }));
@@ -50,14 +50,14 @@ export function renderBillingEmail(input: BillingEmailInput): { subject: string;
   const plain = links.filter(link => !link.note);
   if (plain.length) { html.push(renderLinkRow(plain)); text.push(plain.map(link => `${link.label}: ${link.url}`).join('\n')); }
   for (const link of links.filter(link => link.note)) {
-    html.push(paragraph(`${escapeHtml(link.note!)} <a href="${escapeHtml(link.url)}" style="color: #155e75; text-decoration: underline;">${escapeHtml(link.label)}</a>`));
+    html.push(paragraph(`${escapeHtml(link.note!)} <a href="${escapeHtml(link.url)}" style="color: ${EMAIL_PALETTE.link}; text-decoration: underline;">${escapeHtml(link.label)}</a>`));
     text.push(`${link.note} ${link.label}: ${link.url}`);
   }
   if (invoices) {
     if (invoices.length) {
       html.push(paragraph('<strong>Invoices still open</strong>'));
       html.push(...invoices.map(invoice => paragraph(`${escapeHtml(invoice.number)} · ${escapeHtml(invoice.amount)} · `
-        + `<a href="${escapeHtml(invoice.url)}" style="color: #155e75; text-decoration: underline;">View and pay</a>`)));
+        + `<a href="${escapeHtml(invoice.url)}" style="color: ${EMAIL_PALETTE.link}; text-decoration: underline;">View and pay</a>`)));
       text.push(['Invoices still open', ...invoices.map(invoice => `${invoice.number} · ${invoice.amount}: ${invoice.url}`)].join('\n'));
     } else {
       html.push(paragraph('You have no open invoices right now.'));

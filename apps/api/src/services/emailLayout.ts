@@ -38,6 +38,35 @@ const ACCENT_LINE = process.env.EMAIL_ACCENT_COLOR || '#4DA3FF'; // blue
 const STRONG_COLOR = process.env.EMAIL_STRONG_COLOR || '#9FDFFF'; // ice
 const SUPPORT_EMAIL = process.env.EMAIL_SUPPORT_ADDRESS || 'support@cloud-guardian.com';
 
+/** The frame's text and surface colours for templates that write their own
+ * inline styles (email.ts, billingEmail.ts, ticketNotifyWorker.ts, ...). Every
+ * colour inside the card comes from here, so no template can put dark text on
+ * the dark panel or light text on a light box. */
+export const EMAIL_PALETTE = {
+  /** Headings, emphasised values. */
+  heading: HEADING_COLOR,
+  /** Body copy. */
+  body: BODY_COLOR,
+  /** Secondary copy: quoted text, table values, terms. */
+  soft: SOFT_COLOR,
+  /** Labels and small print. */
+  muted: MUTED_COLOR,
+  /** Links inside the card. */
+  link: BRAND_ICE,
+  /** <strong> text. */
+  strong: STRONG_COLOR,
+  /** Hairlines between rows and around boxes. */
+  rule: RULE_COLOR,
+  /** The inset surface for quoted text, notes and terms (flattened on panel). */
+  surface: REPLY_BG,
+  /** The left edge of an inset block. */
+  edge: BRAND_BLUE,
+} as const;
+
+/** Inline style of a body paragraph and of a muted (small-print) paragraph. */
+export const BODY_PARA_STYLE = `margin: 0 0 12px; font-size: 15px; line-height: 1.55; color: ${BODY_COLOR};`;
+export const MUTED_PARA_STYLE = `margin: 12px 0 0; font-size: 13px; line-height: 1.55; color: ${MUTED_COLOR};`;
+
 const LOGO_URL = process.env.EMAIL_BRAND_LOGO_URL || 'https://cloud-guardian.com/assets/brand/cg-logo.png';
 const BRAND_SITE = 'cloud-guardian.com';
 const BRAND_PHONE = '(732) 743-5472';
@@ -160,7 +189,8 @@ export function renderParagraph(content: string, options: { muted?: boolean; mar
   return `<p style="margin: ${marginTop}px 0 12px; font-size: ${size}; line-height: 1.55; color: ${color}; font-family: ${FONT_STACK};">${content}</p>`;
 }
 
-const RULE = '#e5e7eb';
+// Hairlines in the billing blocks: the frame's line-soft, not a light grey.
+const RULE = RULE_COLOR;
 
 /** Locked facts of a billing email ("Amount", "Payment date", "Paid with"): a
  * presentational two-column table that stays legible at 390px. */
@@ -174,18 +204,36 @@ export function renderSummaryTable(rows: { label: string; value: string }[]): st
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin: 16px 0 20px; border-collapse: collapse; width: 100%;">${cells}</table>`;
 }
 
-/** Secondary actions ("Skip this payment · Stop automatic payments") as real links. */
+/** Secondary actions ("Skip this payment · Stop automatic payments") as real links.
+ * The link colour, not the button colour: EMAIL_BUTTON_COLOR may be set to a
+ * fill that is not readable as text on the panel. */
 export function renderLinkRow(links: { label: string; url: string }[]): string {
   if (!links.length) return '';
-  const anchors = links.map(link => `<a href="${escapeHtml(link.url)}" style="color: ${ACCENT_COLOR}; text-decoration: underline;">${escapeHtml(link.label)}</a>`);
-  return `<p style="margin: 16px 0 12px; font-size: 14px; line-height: 1.6; font-family: ${FONT_STACK};">${anchors.join('&nbsp;·&nbsp;')}</p>`;
+  const anchors = links.map(link => `<a href="${escapeHtml(link.url)}" style="color: ${BRAND_ICE}; text-decoration: underline;">${escapeHtml(link.label)}</a>`);
+  return `<p style="margin: 16px 0 12px; font-size: 14px; line-height: 1.6; color: ${MUTED_COLOR}; font-family: ${FONT_STACK};">${anchors.join('&nbsp;·&nbsp;')}</p>`;
 }
 
-/** A muted, boxed block for terms and legal lines (the authorization copy, notes). */
+/** A muted, boxed block for terms and legal lines (the authorization copy, notes):
+ * the inset surface with a near-white title and soft body text. A table with
+ * bgcolor so Outlook desktop paints the box. */
 export function renderTermsBlock(title: string, paragraphs: string[]): string {
-  const body = paragraphs.map(text => `<p style="margin: 0 0 8px; font-size: 13px; line-height: 1.55; color: #374151; font-family: ${FONT_STACK};">${escapeHtml(text)}</p>`).join('');
-  return `<div style="margin: 24px 0 0; padding: 16px; background: #f8fafc; border: 1px solid ${RULE}; border-radius: 8px;">`
-    + `<p style="margin: 0 0 6px; font-size: 13px; font-weight: 600; color: ${HEADING_COLOR}; font-family: ${FONT_STACK};">${escapeHtml(title)}</p>${body}</div>`;
+  const body = paragraphs.map(text => `<p style="margin: 0 0 8px; font-size: 13px; line-height: 1.55; color: ${SOFT_COLOR}; font-family: ${FONT_STACK};">${escapeHtml(text)}</p>`).join('');
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 24px 0 0; border-collapse: separate;"><tr>`
+    + `<td bgcolor="${REPLY_BG}" style="padding: 16px; background: ${REPLY_BG}; border: 1px solid ${RULE_COLOR}; border-radius: 6px; font-family: ${FONT_STACK};">`
+    + `<p style="margin: 0 0 6px; font-size: 13px; font-weight: 600; color: ${HEADING_COLOR}; font-family: ${FONT_STACK};">${escapeHtml(title)}</p>${body}</td></tr></table>`;
+}
+
+/** An inset block for quoted or boxed content inside the card (a ticket body,
+ * a decline reason, an admin's note, alert details): the inset surface with a
+ * blue left edge. `innerHtml` must already be escaped. */
+export function renderInsetBlock(innerHtml: string, options: { label?: string; size?: number } = {}): string {
+  const label = options.label
+    ? `<p style="margin: 0 0 6px; font-size: 12px; line-height: 1.5; color: ${MUTED_COLOR}; font-family: ${FONT_STACK};">${escapeHtml(options.label)}</p>`
+    : '';
+  const size = options.size ?? 14;
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 12px 0 16px;"><tr>`
+    + `<td bgcolor="${REPLY_BG}" style="padding: 12px 14px; background: ${REPLY_BG}; border-left: 3px solid ${BRAND_BLUE}; border-bottom: 0; font-family: ${FONT_STACK}; font-size: ${size}px; line-height: 1.55; color: ${SOFT_COLOR};">`
+    + `${label}${innerHtml}</td></tr></table>`;
 }
 
 /** The full reply block, styled to match the frame. */

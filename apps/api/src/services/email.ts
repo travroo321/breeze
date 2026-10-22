@@ -2,9 +2,13 @@ import nodemailer, { type Transporter } from 'nodemailer';
 import { Resend } from 'resend';
 import { captureException } from './sentry';
 import {
+  BODY_PARA_STYLE,
+  EMAIL_PALETTE,
   escapeHtml,
   getSupportEmail,
+  MUTED_PARA_STYLE,
   renderButton,
+  renderInsetBlock,
   renderLayout,
 } from './emailLayout';
 import type { PartnerLaneMailPurpose, PlatformMailPurpose } from './emailDomains/mailPurposes';
@@ -1043,8 +1047,10 @@ async function sendViaMailgun(
   }
 }
 
-export const BODY_PARA = 'margin: 0 0 12px; font-size: 15px; line-height: 1.55; color: #1f2937;';
-export const MUTED_PARA = 'margin: 12px 0 0; font-size: 13px; line-height: 1.55; color: #6b7280;';
+// The frame's paragraph styles (emailLayout.ts palette), so these templates
+// stay readable on the Cloud Guardian dark card.
+export const BODY_PARA = BODY_PARA_STYLE;
+export const MUTED_PARA = MUTED_PARA_STYLE;
 
 export function supportFooter(explicit: string | undefined, prefix: string): string | undefined {
   const support = getSupportEmail(explicit);
@@ -1341,7 +1347,7 @@ export function buildQuoteOutcomeTemplate(params: QuoteOutcomeEmailParams): Emai
   const reason = params.declineReason?.trim();
   const reasonBlock = reason
     ? `<p style="${BODY_PARA}">Their note:</p>
-       <blockquote style="margin: 0 0 12px; padding: 10px 14px; border-left: 3px solid #d1d5db; font-size: 14px; line-height: 1.55; color: #374151;">${escapeHtml(reason).replace(/\r?\n/g, '<br>')}</blockquote>`
+       ${renderInsetBlock(escapeHtml(reason).replace(/\r?\n/g, '<br>'))}`
     : '';
   const invoiceLine = params.outcome === 'accepted' && params.invoiceNumber
     ? `<p style="${BODY_PARA}">Invoice <strong>${escapeHtml(params.invoiceNumber)}</strong> has been issued and emailed to the customer.</p>`
@@ -1392,11 +1398,9 @@ function buildAlertNotificationTemplate(params: AlertNotificationEmailParams): E
         <span style="display: inline-block; padding: 4px 10px; border-radius: 999px; background: ${pillBg}; color: ${pillFg}; font-size: 12px; letter-spacing: 0.6px;">${severityLabel}</span>
       </p>
       <p style="${BODY_PARA}">${escapeHtml(params.summary)}</p>
-      <div style="margin: 12px 0 16px; padding: 12px 14px; border-radius: 8px; background: #f7fafc;">
-        ${details
-    .map((detail) => `<p style="margin: 0 0 6px; font-size: 13px; line-height: 1.5; color: #374151;">${escapeHtml(detail)}</p>`)
-    .join('')}
-      </div>
+      ${renderInsetBlock(details
+    .map((detail) => `<p style="margin: 0 0 6px; font-size: 13px; line-height: 1.5; color: ${EMAIL_PALETTE.soft};">${escapeHtml(detail)}</p>`)
+    .join(''))}
       ${params.dashboardUrl ? renderButton('View details', params.dashboardUrl) : ''}
   `;
 

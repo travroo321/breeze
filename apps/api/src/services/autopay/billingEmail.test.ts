@@ -21,7 +21,8 @@ describe('renderBillingEmail', () => {
     expect(summary).toBeGreaterThan(body);
     expect(links).toBeGreaterThan(summary);
     expect(terms).toBeGreaterThan(links);
-    expect(html).toContain('>Example MSP</p>');
+    // The frame's footer: the brand name, then the phone and site links.
+    expect(html).toContain('>Example MSP &middot; <a href="tel:');
   });
 
   it('the text part says each fact once, in the same order, with no preheader or hidden text', () => {

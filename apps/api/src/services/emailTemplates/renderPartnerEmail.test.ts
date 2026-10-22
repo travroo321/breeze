@@ -286,7 +286,7 @@ describe('replacement patterns in partner text are literal', () => {
     const out = renderPartnerEmail(commentArgs({
       custom: { subject: null, heading: null, buttonLabel: "Pay $& now $'", html: '<p>Hello {{cta_button}} there</p>' },
     }));
-    expect(out.html).toContain("Pay $&amp; now $&#39;</a>");
+    expect(out.html).toContain("Pay $&amp; now $&#39; &rsaquo;</a>");
     expect(out.bodyText).toContain("Pay $& now $': https://manage.example/portal/tickets/abc");
     expect(out.html).not.toMatch(/__CTA|cta-sentinel/i);
   });

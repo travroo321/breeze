@@ -32,7 +32,7 @@ import { and, eq } from 'drizzle-orm';
 import * as dbModule from '../db';
 import { organizations, partners, tickets, ticketComments, devices, ticketStatuses } from '../db/schema';
 import { getEmailService } from '../services/email';
-import { escapeHtml, REPLY_SLOT, renderButton, renderLayout, renderParagraph, renderReplyBlock } from '../services/emailLayout';
+import { EMAIL_PALETTE, escapeHtml, REPLY_SLOT, renderButton, renderInsetBlock, renderLayout, renderParagraph, renderReplyBlock } from '../services/emailLayout';
 import { renderPartnerEmail, type PartnerEmailCustom } from '../services/emailTemplates/renderPartnerEmail';
 import { resolveCommentNotificationPortalHref } from '../services/inboundEmail/commentNotificationPortalHref';
 import { buildThreadingHeaders, partnerInboundAddress, ticketThreadAnchor } from '../services/inboundEmail/outboundThreading';
@@ -171,7 +171,7 @@ export function buildAssigneeEmailHtml(
   const bodyHtml = escapeHtml(excerpt).replace(/\n/g, '<br>');
   const requester = [t.submitterName, t.submitterEmail].filter(Boolean).map(String).join(' ').trim();
   const row = (k: string, v: string) =>
-    v ? `<tr><td style="padding:4px 12px 4px 0;color:#6b7280;font-size:13px;white-space:nowrap;vertical-align:top;">${k}</td><td style="padding:4px 0;color:#111111;font-size:13px;">${v}</td></tr>` : '';
+    v ? `<tr><td style="padding:4px 12px 4px 0;color:${EMAIL_PALETTE.muted};font-size:13px;white-space:nowrap;vertical-align:top;border-bottom:1px solid ${EMAIL_PALETTE.rule};">${k}</td><td style="padding:4px 0;color:${EMAIL_PALETTE.heading};font-size:13px;border-bottom:1px solid ${EMAIL_PALETTE.rule};">${v}</td></tr>` : '';
   const body = [
     `<table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin:0 0 14px;">`,
     row('Ticket', escapeHtml(label)),
@@ -182,7 +182,7 @@ export function buildAssigneeEmailHtml(
     deviceName ? row('Device', escapeHtml(deviceName)) : '',
     `</table>`,
     bodyHtml
-      ? `<div style="border-left:3px solid #d1d5db;padding:8px 12px;margin:0 0 16px;color:#374151;font-size:14px;line-height:1.5;background:#f9fafb;">${bodyHtml}</div>`
+      ? renderInsetBlock(bodyHtml)
       : '',
     renderButton('Open ticket', url),
     renderParagraph(escapeHtml(url), { muted: true, marginTop: 12 }),

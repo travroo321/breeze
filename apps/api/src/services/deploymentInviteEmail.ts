@@ -6,7 +6,7 @@
  * stripper and a 500-character clamp before either body sees it.
  */
 
-import { escapeHtml, renderButton, renderLayout } from './emailLayout';
+import { BODY_PARA_STYLE, EMAIL_PALETTE, escapeHtml, renderButton, renderInsetBlock, renderLayout } from './emailLayout';
 
 export interface DeploymentInviteEmailInput {
   orgName: string;
@@ -70,16 +70,16 @@ export function buildDeploymentInviteEmail(
   const safeOrg = escapeHtml(input.orgName);
   const safeAdmin = escapeHtml(input.adminEmail);
   const messageBlock = safeMsg
-    ? `<div style="margin: 16px 0; padding: 12px 14px; border-radius: 8px; background: #f7fafc;"><p style="margin: 0 0 6px; font-size: 12px; line-height: 1.5; color: #6b7280;">Note from ${safeAdmin}</p><p style="margin: 0; font-size: 14px; line-height: 1.55; color: #1f2937; white-space: pre-wrap;">${escapeHtml(safeMsg)}</p></div>`
+    ? renderInsetBlock(`<p style="margin: 0; font-size: 14px; line-height: 1.55; color: ${EMAIL_PALETTE.body}; white-space: pre-wrap;">${escapeHtml(safeMsg)}</p>`, { label: `Note from ${input.adminEmail}` })
     : '';
 
   const body = `
-      <p style="margin: 0 0 12px; font-size: 15px; line-height: 1.55; color: #1f2937;">Hi,</p>
-      <p style="margin: 0 0 12px; font-size: 15px; line-height: 1.55; color: #1f2937;"><strong>${safeAdmin}</strong> from <strong>${safeOrg}</strong> is asking you to install <strong>Breeze</strong>, a monitoring tool that keeps your device secure and performant.</p>
+      <p style="${BODY_PARA_STYLE}">Hi,</p>
+      <p style="${BODY_PARA_STYLE}"><strong>${safeAdmin}</strong> from <strong>${safeOrg}</strong> is asking you to install <strong>Breeze</strong>, a monitoring tool that keeps your device secure and performant.</p>
       ${renderButton('Install Breeze', input.installUrl)}
-      <p style="margin: 16px 0 0; font-size: 13px; line-height: 1.55; color: #6b7280;">The install takes under 60 seconds and detects your operating system automatically. Mac, Windows, and Linux are supported. Your device password will be required.</p>
+      <p style="margin: 16px 0 0; font-size: 13px; line-height: 1.55; color: ${EMAIL_PALETTE.muted};">The install takes under 60 seconds and detects your operating system automatically. Mac, Windows, and Linux are supported. Your device password will be required.</p>
       ${messageBlock}
-      <p style="margin: 12px 0 0; font-size: 13px; line-height: 1.55; color: #6b7280;">If you weren't expecting this, reply to this email and we'll help.</p>
+      <p style="margin: 12px 0 0; font-size: 13px; line-height: 1.55; color: ${EMAIL_PALETTE.muted};">If you weren't expecting this, reply to this email and we'll help.</p>
   `;
 
   const html = renderLayout({
